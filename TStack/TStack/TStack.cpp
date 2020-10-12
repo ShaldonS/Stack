@@ -1,5 +1,4 @@
 #include "TStack.h"
-#include <algorithm>
 #include <iostream>
 #include <string>
 
