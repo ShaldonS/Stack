@@ -1,0 +1,22 @@
+﻿  TStack.cpp
+C:\Users\eemee\source\repos\TStack\TStack\TStack.cpp(102,17): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=char
+          ]
+C:\Users\eemee\source\repos\TStack\TStack\TStack.cpp(108,17): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=char
+          ]
+C:\Users\eemee\source\repos\TStack\TStack\TStack.cpp(114,17): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=char
+          ]
+C:\Users\eemee\source\repos\TStack\TStack\TStack.cpp(126,17): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=char
+          ]
+  TStack.vcxproj -> C:\Users\eemee\source\repos\TStack\Debug\TStack.exe

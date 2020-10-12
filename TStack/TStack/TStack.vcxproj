@@ -139,12 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="StackTestkit.cpp" />
-    <ClCompile Include="TFormula.cpp" />
     <ClCompile Include="TStack.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TFormula.h" />
     <ClInclude Include="TStack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
