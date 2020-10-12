@@ -93,3 +93,46 @@ void Check()
 	}
 	out.push_back(myStack.Top());
 }
+
+
+double Result()
+{
+	double first, second;
+	for (size_t i = 0; i < out.length(); i++)
+	{
+		switch (out[i]) {
+		case '+':
+			second = myStack.Top();
+			first = myStack.Pop() + second;
+			myStack.Pop();
+			myStack.Push(first);
+			break;
+		case '-':
+			second = myStack.Top();
+			first = myStack.Pop() - second;
+			myStack.Pop();
+			myStack.Push(first);
+			break;
+		case '*':
+			second = myStack.Top();
+			first = myStack.Pop() * second;
+			myStack.Pop();
+			myStack.Push(first);
+			break;
+		case '/':
+			second = myStack.Top();
+			if (second == 0)
+			{
+				cout << "На ноль делить нельзя!\n";
+				return 0;
+			}
+			else
+				first = myStack.Pop() / second;
+			myStack.Pop();
+			myStack.Push(first);
+			break;
+		default: break;
+		}
+	}
+	return myStack.Top();
+}
