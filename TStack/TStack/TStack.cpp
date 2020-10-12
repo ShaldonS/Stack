@@ -14,7 +14,7 @@ string str = "(6*(2+1)/(3)-1";
 string out = "";
 int count_war = 0;
 
-int main()
+int main(int argc, char* argv)
 {
 	setlocale(LC_ALL, "rus");
 
