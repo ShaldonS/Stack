@@ -1,92 +1,95 @@
-﻿#include <algorithm>
-#include <stack>
+#include "TStack.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 
 using namespace std;
 
+
+void Check();//проверка скобок, знаков
+double Result();//преобразование строки выражения в выражение с числами целочисленного типа и подсчет результата
+
+Stack <char> myStack(10);
+string str = "(((1+23)*1-22)+5)*2-(7";
+string out = "";
+int count_war = 0;
+
 int main()
 {
-	stack <char> steck;
-	string str = "2 * 4 + 3";
+	setlocale(LC_ALL, "rus");
 
+	cout << "Инфиксная форма: " << str <<  endl;
 
-	cout << str;
+	Check();
+	cout << "Ошибок: " << count_war << endl;
+	cout << "Постфиксная форма: " << out << endl;
+	cout << "Результат выражения: " << Result() << endl;
 
-	string out = "";
+	return 0;
+}
 
-	//оформить функцией
-	for (int i = 0; i < str.length(); i++)
+void Check()
+{
+	for (size_t i = 0; i < str.length(); i++)
 	{
 		if (str[i] == ' ') continue;
-		switch (str[i])
-		{
-		case '(': steck.push('('); break;
-		case ')':
-
-			while (!steck.empty() || steck.top() != '(')
-			{
-				out.push_back(steck.top());
-				steck.pop();
-			}
-			steck.pop();
+		switch (str[i]) {
+		case '(':
+			myStack.Push('(');
 			break;
-
-		case '+':
-			if (steck.empty())
-				steck.push('+');
-			else
+		case ')':
+		{
+			while (!myStack.isEmpty())
 			{
-				while (!steck.empty())
+				if (myStack.Top() != '(')
 				{
-					if (steck.top() != '(')
+					out.push_back(myStack.Top());
+					myStack.Pop();
+				}
+				else
+				{
+					count_war++;
+					break;
+				}
+			}
+			myStack.Pop();
+		}
+		break;
+		case '-':
+		case '+':
+			if (myStack.isEmpty()) myStack.Push(str[i]);
+			else {
+				while (!myStack.isEmpty())
+				{
+					if (myStack.Top() != '(')
 					{
-						out.push_back(steck.top());
-						steck.pop();
+						out.push_back(myStack.Top());
+						myStack.Pop();
 					}
 					else break;
 				}
-				steck.push('+');
-			}
-			break;
-		case '-':
-			if (steck.empty())
-				steck.push('+');
-			else
-			{
-				while (!steck.empty() || steck.top() != '(')
-				{
-					out.push_back(steck.top());
-					steck.pop();
-				}
-				steck.push('+');
+				myStack.Push(str[i]);
 			}
 			break;
 		case '*':
 		case '/':
-			if (steck.empty())
-				steck.push(str[i]);
+			if (myStack.isEmpty()) myStack.Push(str[i]);
 			else
 			{
-				while (!steck.empty() || steck.top() == '*' || steck.top() == '/')
+				while (!myStack.isEmpty() || myStack.Top() == '*' || myStack.Top() == '/')
 				{
-					out.push_back(steck.top());
-					steck.pop();
+					if (myStack.Top() != '(')
+					{
+						out.push_back(myStack.Top());
+						myStack.Pop();
+					}
+					else break;
 				}
-				steck.push(str[i]);
+				myStack.Push(str[i]);
 			}
 			break;
 		default: out.push_back(str[i]);
 		}
 	}
-
-	while (!steck.empty())
-	{
-		out.push_back(steck.top());
-		steck.pop();
-	}
-
-	cout << endl << out;
-
-	return 0;
+	out.push_back(myStack.Top());
 }
