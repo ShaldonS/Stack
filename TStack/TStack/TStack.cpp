@@ -10,7 +10,7 @@ void Check();//проверка скобок, знаков
 double Result();//преобразование строки выражения в выражение с числами целочисленного типа и подсчет результата
 
 Stack <char> myStack(10);
-string str = "(((1+23)*1-22)+5)*2-(7";
+string str = "(6*(2+1)/(3)-1";
 string out = "";
 int count_war = 0;
 
@@ -131,8 +131,30 @@ double Result()
 			myStack.Pop();
 			myStack.Push(first);
 			break;
-		default: break;
+		default: default: myStack.Push(out[i] - '0');
 		}
+		if (out[out.length() - 1] == '(')
+		{
+			cout << endl << "Вычисление невозможно" << endl;
+			return 0;
+		}
+
+		if (str[i] == '(')
+		{
+			count_left++;
+		}
+
+		if (str[i] == ')')
+		{
+			count_right++;
+		}
+		cout << endl << str[i] << endl;
+		cout << endl << "l: " << count_left << " r: " << count_right << endl;
+	}
+	if (count_left != count_right)
+	{
+		cout << endl << "Число открывающих скобок не равно числу закрывающих!" << endl;
+		return 0;
 	}
 	return myStack.Top();
 }
