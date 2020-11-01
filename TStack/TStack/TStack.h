@@ -10,7 +10,7 @@ template <class T>
 class Stack
 {
 public:
-	Stack(double size);
+	Stack(int size);
 	~Stack();
 
 	void Push(T);//äîáàâèòü ýëåìåíò
@@ -26,7 +26,7 @@ private:
 };
 
 template <class T>
-Stack<T>::Stack(double MAX)
+Stack<T>::Stack(int MAX)
 {
 	size = MAX;
 	arr = new T[size];
