@@ -13,12 +13,12 @@ public:
 	Stack(double size);
 	~Stack();
 
-	void Push(T);//добавить элемент
-	T Pop();//считать и удалить верхний элемент
-	T Top();//вернуть верхний элемент
-	bool isEmpty();//проверка на пустоту
-	bool isFull();//проверка на полноту
-	void Print();//вывести стек
+	void Push(T);//Г¤Г®ГЎГ ГўГЁГІГј ГЅГ«ГҐГ¬ГҐГ­ГІ
+	T Pop();//Г±Г·ГЁГІГ ГІГј ГЁ ГіГ¤Г Г«ГЁГІГј ГўГҐГ°ГµГ­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
+	T Top();//ГўГҐГ°Г­ГіГІГј ГўГҐГ°ГµГ­ГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ
+	bool isEmpty();//ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГіГ±ГІГ®ГІГі
+	bool isFull();//ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ®Г«Г­Г®ГІГі
+	void Print();//ГўГ»ГўГҐГ±ГІГЁ Г±ГІГҐГЄ
 private:
 	T arr[MAX];
 	int top;
@@ -28,22 +28,29 @@ private:
 template <class T>
 Stack<T>::Stack(double MAX)
 {
-	//size = MAX;
-	//arr = new T[size];
+	size = MAX;
+	arr = new T[size];
 	top = 0;
 }
 
 template <class T>
 Stack<T>::~Stack()
 {
-	//delete[]arr;
+	delete[]arr;
 }
 
 template <class T>
 void Stack<T>::Push(T a)
 {
-	top++;
-	arr[top] = a;
+	if (top == (size - 1)) 
+	{
+		throw overflow_error("Stack is full");
+	}
+	else 
+	{
+		top++;
+		arr[top] = a;
+	}
 }
 
 template <class T>
@@ -56,20 +63,33 @@ template <class T>
 bool Stack<T>::isFull()
 {
 
-	return(top >= size);
+	return(top = size);
 }
 
 template <class T>
 T Stack<T>::Pop()
 {
+	if (top == -1)
+	{
+		throw underflow_error("Empty");
+	}
 	top--;
-	return arr[top];
+	int ret = arr[top];
+	
+
+	return ret;
 }
 
 template <class T>
 T Stack<T>::Top()
 {
-	return arr[top];
+	if (top == -1)
+	{
+		throw underflow_error("Empty");
+	}
+	int ret = arr[top];
+
+	return ret;
 }
 
 template <class T>
